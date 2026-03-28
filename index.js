@@ -35,4 +35,8 @@ io.on('connection', (socket) => {
     socket.on("peer-negotiation-done", ({ to, answer }) => {
         io.to(to).emit("peer-negotiation-final", { from: socket.id, answer });
     })
+
+    socket.on("endCall", ({ to }) => {
+        io.to(to).emit("endCall", { from: socket.id });
+    })
 });
